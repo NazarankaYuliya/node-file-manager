@@ -1,0 +1,16 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "RS School Task 2",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NazarankaYuliya/node-file-manager.git"
+  },
+  "author": "nazarankayuliya",
+  "license": "ISC"
+}
