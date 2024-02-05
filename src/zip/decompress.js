@@ -21,7 +21,7 @@ export const decompress = async (currentDir, args) => {
 
     pipeline(rs, brotli, ws, (err) => {
       if (err) {
-        unlink(destinationFilePath);
+        unlink(destinationFilePath).catch(() => reject());
         reject();
       } else {
         console.log("Decompression successful.");
