@@ -5,7 +5,10 @@ import { createReadStream } from "node:fs";
 export const hash = async (currentDir, fileToHash) => {
   return new Promise((resolve, reject) => {
     const hash = createHash("sha256");
-    const stream = createReadStream(path.join(currentDir, fileToHash));
+    const sourseFile = path.isAbsolute(fileToHash)
+      ? fileToHash
+      : path.join(currentDir, fileToHash);
+    const stream = createReadStream(sourseFile);
 
     stream.on("data", (chunk) => {
       hash.update(chunk);

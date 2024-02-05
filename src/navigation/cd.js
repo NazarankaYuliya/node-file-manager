@@ -2,7 +2,7 @@ import { access, constants, stat } from "node:fs/promises";
 import path from "node:path";
 
 export const cd = async (currentDir, args) => {
-  const targetDir = path.join(currentDir, args);
+  const targetDir = path.isAbsolute(args) ? args : path.join(currentDir, args);
 
   try {
     await access(targetDir, constants.F_OK);

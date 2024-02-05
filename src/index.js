@@ -8,6 +8,8 @@ import { ls } from "./navigation/ls.js";
 import { cd } from "./navigation/cd.js";
 import { cat } from "./files/cat.js";
 import { add } from "./files/add.js";
+import { cp } from "./files/cp.js";
+import { mv } from "./files/mv.js";
 import { rn } from "./files/rn.js";
 import { rm } from "./files/rm.js";
 import { hash } from "./hash/hash.js";
@@ -68,6 +70,18 @@ rl.on("line", async (input) => {
         rl.prompt();
         break;
 
+      case "cp":
+        await cp(currentDir, joinedArgs);
+        printPathToCurrentDir(currentDir);
+        rl.prompt();
+        break;
+
+      case "mv":
+        await mv(currentDir, joinedArgs);
+        printPathToCurrentDir(currentDir);
+        rl.prompt();
+        break;
+
       case "rn":
         await rn(currentDir, joinedArgs);
         printPathToCurrentDir(currentDir);
@@ -104,7 +118,7 @@ rl.on("line", async (input) => {
         rl.prompt();
     }
   } catch (error) {
-    console.error("Operation failed");
+    console.log("Operation failed");
     printPathToCurrentDir(currentDir);
     rl.prompt();
   }
