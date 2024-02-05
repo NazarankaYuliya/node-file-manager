@@ -11,6 +11,8 @@ import { add } from "./files/add.js";
 import { rn } from "./files/rn.js";
 import { rm } from "./files/rm.js";
 import { hash } from "./hash/hash.js";
+import { compress } from "./zip/compress.js";
+import { decompress } from "./zip/decompress.js";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -84,13 +86,25 @@ rl.on("line", async (input) => {
         rl.prompt();
         break;
 
+      case "compress":
+        await compress(currentDir, joinedArgs);
+        printPathToCurrentDir(currentDir);
+        rl.prompt();
+        break;
+
+      case "decompress":
+        await decompress(currentDir, joinedArgs);
+        printPathToCurrentDir(currentDir);
+        rl.prompt();
+        break;
+
       default:
         console.log("Invalid input.");
         printPathToCurrentDir(currentDir);
         rl.prompt();
     }
   } catch (error) {
-    console.error("Opetion failed");
+    console.error("Operation failed");
     printPathToCurrentDir(currentDir);
     rl.prompt();
   }
