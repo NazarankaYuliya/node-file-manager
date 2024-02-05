@@ -1,5 +1,5 @@
 import readline from "readline";
-import { getUserName } from "./utils/getUserName.js";
+import { getUserName } from "./cli/getUserName.js";
 import { printGreeting } from "./utils/printGreeting.js";
 import { printPathToCurrentDir } from "./utils/printPathToCurrentDir.js";
 import { exitFileManager } from "./utils/exitFileManager.js";
@@ -12,6 +12,7 @@ import { cp } from "./files/cp.js";
 import { mv } from "./files/mv.js";
 import { rn } from "./files/rn.js";
 import { rm } from "./files/rm.js";
+import { osInfo } from "./os/os.js";
 import { hash } from "./hash/hash.js";
 import { compress } from "./zip/compress.js";
 import { decompress } from "./zip/decompress.js";
@@ -94,6 +95,12 @@ rl.on("line", async (input) => {
         rl.prompt();
         break;
 
+      case "os":
+        await osInfo(joinedArgs);
+        printPathToCurrentDir(currentDir);
+        rl.prompt();
+        break;
+
       case "hash":
         await hash(currentDir, joinedArgs);
         printPathToCurrentDir(currentDir);
@@ -118,7 +125,7 @@ rl.on("line", async (input) => {
         rl.prompt();
     }
   } catch (error) {
-    console.log("Operation failed");
+    console.log("Operation failed", error);
     printPathToCurrentDir(currentDir);
     rl.prompt();
   }
