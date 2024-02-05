@@ -1,6 +1,7 @@
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
+import { colorizeText } from "../utils/colorizeText.js";
 
 export const hash = async (currentDir, fileToHash) => {
   return new Promise((resolve, reject) => {
@@ -15,7 +16,7 @@ export const hash = async (currentDir, fileToHash) => {
     });
 
     stream.on("end", () => {
-      console.log(hash.digest("hex"));
+      console.log(colorizeText("green", hash.digest("hex")));
       stream.close();
       resolve();
     });

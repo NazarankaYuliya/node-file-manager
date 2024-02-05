@@ -1,3 +1,10 @@
+import { colorizeText } from "./colorizeText.js";
+
 export const printGreeting = (username) => {
-  console.log(`Welcome to the File Manager, ${username}!`);
+  console.log(
+    colorizeText(
+      "magenta",
+      `Welcome to the File Manager, ${username}!`.toLocaleUpperCase(),
+    ),
+  );
 };

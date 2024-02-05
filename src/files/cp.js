@@ -1,6 +1,7 @@
 import path from "node:path";
 import { createReadStream, createWriteStream } from "node:fs";
 import { pipeline } from "node:stream";
+import { colorizeText } from "../utils/colorizeText.js";
 
 export const cp = async (currentDir, args) => {
   return new Promise((resolve, reject) => {
@@ -24,7 +25,7 @@ export const cp = async (currentDir, args) => {
       if (err) {
         reject();
       } else {
-        console.log(`File copied to ${targetDirectory}`);
+        console.log(colorizeText("green", `File copied to ${targetDirectory}`));
         resolve();
       }
     });

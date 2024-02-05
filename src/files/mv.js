@@ -2,6 +2,7 @@ import path from "node:path";
 import { createReadStream, createWriteStream } from "node:fs";
 import { pipeline } from "node:stream";
 import { unlink } from "node:fs/promises";
+import { colorizeText } from "../utils/colorizeText.js";
 
 export const mv = async (currentDir, args) => {
   return new Promise((resolve, reject) => {
@@ -26,7 +27,7 @@ export const mv = async (currentDir, args) => {
         reject();
       } else {
         unlink(sourceFile);
-        console.log(`File moved to ${targetDirectory}`);
+        console.log(colorizeText("green", `File moved to ${targetDirectory}`));
         resolve();
       }
     });

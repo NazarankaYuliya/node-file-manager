@@ -1,3 +1,10 @@
+import { colorizeText } from "./colorizeText.js";
+
 export const exitFileManager = (username) => {
-  console.log(`Thank you for using File Manager, ${username}, goodbye!`);
+  console.log(
+    colorizeText(
+      "magenta",
+      `Thank you for using File Manager, ${username}, goodbye!`.toLocaleUpperCase(),
+    ),
+  );
 };

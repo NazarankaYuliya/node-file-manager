@@ -16,11 +16,12 @@ import { osInfo } from "./os/os.js";
 import { hash } from "./hash/hash.js";
 import { compress } from "./zip/compress.js";
 import { decompress } from "./zip/decompress.js";
+import { colorizeText } from "./utils/colorizeText.js";
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: ">>",
+  prompt: colorizeText("blue", "\u25B6\u25B6"),
 });
 
 const username = getUserName();
@@ -120,12 +121,12 @@ rl.on("line", async (input) => {
         break;
 
       default:
-        console.log("Invalid input.");
+        console.log(colorizeText("yellow", "Invalid input."));
         printPathToCurrentDir(currentDir);
         rl.prompt();
     }
   } catch (error) {
-    console.log("Operation failed", error);
+    console.log(colorizeText("red", "Operation failed"));
     printPathToCurrentDir(currentDir);
     rl.prompt();
   }
